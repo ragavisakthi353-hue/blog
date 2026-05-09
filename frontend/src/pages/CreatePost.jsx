@@ -17,7 +17,7 @@ const CreatePost = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:5000/api/posts', { title, content }, { withCredentials: true });
+            await axios.post('https://blog-m5jh.onrender.com/api/posts', { title, content }, { withCredentials: true });
             navigate('/');
         } catch (err) {
             setError(err.response?.data?.message || 'Failed to create post');

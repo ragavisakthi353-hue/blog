@@ -10,7 +10,7 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         const checkUser = async () => {
             try {
-                const res = await axios.get('http://localhost:5000/api/auth/me', { withCredentials: true });
+                const res = await axios.get('https://blog-m5jh.onrender.com/api/auth/me', { withCredentials: true });
                 setUser(res.data);
             } catch (error) {
                 setUser(null);
@@ -27,7 +27,7 @@ export const AuthProvider = ({ children }) => {
 
     const logout = async () => {
         try {
-            await axios.post('http://localhost:5000/api/auth/logout', {}, { withCredentials: true });
+            await axios.post('https://blog-m5jh.onrender.com/api/auth/logout', {}, { withCredentials: true });
             setUser(null);
         } catch (error) {
             console.error('Logout error', error);

@@ -15,10 +15,10 @@ const PostDetail = () => {
     useEffect(() => {
         const fetchPostAndComments = async () => {
             try {
-                const postRes = await axios.get(`http://localhost:5000/api/posts/${id}`);
+                const postRes = await axios.get(`https://blog-m5jh.onrender.com/api/posts/${id}`);
                 setPost(postRes.data);
                 
-                const commentsRes = await axios.get(`http://localhost:5000/api/comments/post/${id}`);
+                const commentsRes = await axios.get(`https://blog-m5jh.onrender.com/api/comments/post/${id}`);
                 setComments(commentsRes.data);
             } catch (error) {
                 console.error('Error fetching data', error);
@@ -32,7 +32,7 @@ const PostDetail = () => {
     const handleDeletePost = async () => {
         if (window.confirm('Are you sure you want to delete this post?')) {
             try {
-                await axios.delete(`http://localhost:5000/api/posts/${id}`, { withCredentials: true });
+                await axios.delete(`https://blog-m5jh.onrender.com/api/posts/${id}`, { withCredentials: true });
                 navigate('/');
             } catch (error) {
                 console.error('Error deleting post', error);
@@ -43,7 +43,7 @@ const PostDetail = () => {
     const handleCommentSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post(`http://localhost:5000/api/comments/post/${id}`, { content: newComment }, { withCredentials: true });
+            const res = await axios.post(`https://blog-m5jh.onrender.com/api/comments/post/${id}`, { content: newComment }, { withCredentials: true });
             setComments([res.data, ...comments]);
             setNewComment('');
         } catch (error) {
@@ -54,7 +54,7 @@ const PostDetail = () => {
     const handleDeleteComment = async (commentId) => {
         if (window.confirm('Delete comment?')) {
             try {
-                await axios.delete(`http://localhost:5000/api/comments/${commentId}`, { withCredentials: true });
+                await axios.delete(`https://blog-m5jh.onrender.com/api/comments/${commentId}`, { withCredentials: true });
                 setComments(comments.filter(c => c._id !== commentId));
             } catch (error) {
                 console.error('Error deleting comment', error);
